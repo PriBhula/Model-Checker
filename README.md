@@ -29,3 +29,9 @@ state machines.
 
 Main application css files can be found in the styles directory (Model-Checker/app/styles/).
 
+### Animation - Priyanka
+
+-----------------------
+
+For my 489 project, i have implemented an animation tab, where users are able to animate through their models
+
