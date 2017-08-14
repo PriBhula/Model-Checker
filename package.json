@@ -38,9 +38,9 @@
     "webpack": "^3.1.0"
   },
   "devDependencies": {
-    "babili-webpack-plugin": "^0.1.2",
-    "vulcanize-loader": "^2.0.1",
-    "wc-loader": "^1.1.5",
-    "web-components-loader": "^0.1.2"
+    "webpack": "3.2.0",
+    "webpack-dev-middleware": "1.11.0",
+    "webpack-dev-server": "2.5.1",
+    "webpack-parallel-uglify-plugin": "0.4.2"
   }
 }
