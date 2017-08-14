@@ -251,8 +251,11 @@ $(function() {
     app.models.init();
     app.generator = require("./generator");
     app.generator.init();
+    app.animator = require("./animator");
+    app.animator.init();
     $("#model-tab").on('shown.bs.tab',app.models.redraw);
     $("#generator-tab").on('shown.bs.tab',app.generator.redraw);
     $("#editor-tab").on('shown.bs.tab',()=>app.editor._editor.focus());
     $("#compilebt").click(app.compileAndBuild);
+    $("#animator-tab").on('shown.bs.tab',app.animator.redraw);
 });
