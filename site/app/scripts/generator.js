@@ -24,7 +24,7 @@ function init() {
     generateBt.click(addToEditor);
 }
 function clear() {
-    added.splice(0,added.length);
+    added.splice(0,added.length);zz
     compile(true);
 }
 function compile(shouldRender) {
@@ -271,7 +271,7 @@ function importProcess(parse) {
         if (process.metaData.hiding) {
             const hiddenType = process.metaData.hiding.type;
             const hiddenSet = process.metaData.hiding.set.set;
-            //For the exclusive list, we want to start by hiding all
+             //For the exclusive list, we want to start by hiding all
             if (hiddenType === 'excludes') {
                 orig.renamed.forEach(toHide => toHide.hidden = true);
             }

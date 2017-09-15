@@ -145,7 +145,7 @@
                 </li>
                 <li class="active"><a data-toggle="tab" href="#editor" id="editor-tab">Editor</a></li>
                 <li><a data-toggle="tab" href="#models" id="model-tab">Process Models</a></li>
-                <li><a data-toggle="tab" href="#generator" id="generator-tab">Process Generator</a></li>
+                <!--<li><a data-toggle="tab" href="#generator" id="generator-tab">Process Generator</a></li>-->
                 <li><a data-toggle="tab" href="#animator" id="animator-tab">Model Animation</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -232,11 +232,11 @@
                 </div><!--/.nav-collapse -->
             </div>
         </nav>
-        <div id="svg-parent"></div>
+        <div></div>
     </div>
 
-    <!--/GENERATOR-->
-    <div id="generator" class="tab-pane fade">
+    <!--/ANIMATOR-->
+    <div id="animator" class="tab-pane fade">
         <nav class="navbar navbar-default navbar-static-top">
             <div id="navbar-generator" class="navbar-center">
                 <ul class="nav navbar-nav">
@@ -275,7 +275,7 @@
                     <li>
                         <div>
                             <button id="clear-modify" title="Clear processes from generator" class="btn btn-primary navbar-btn">
-                                <span class="glyphicon glyphicon-trash"></span> Clear
+          	                	<span class="glyphicon glyphicon-trash"></span> Clear
                             </button>
                         </div>
                     </li>
@@ -284,38 +284,9 @@
         </nav>
         <pre id="generated-text" style="text-align: center"> </pre>
         <div id="generated-processes"></div>
+        <div id="svg-parent"></div>
     </div>
 
-    <!--/ANIMATOR-->
-  	<div id="animator" class="tab-pane fade">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div id="navbar-animator" class="navbar-center">
-                <ul class="nav navbar-nav">
-                    <li><a href="#models">Process:</a></li>
-                    <li style="margin-right: 10px;">
-                        <select id="process-modify-selector" class="form-control navbar-btn process-list" disabled><option>No processes found</option></select>
-                    </li>
-                    <li>
-                        <div>
-                            <button id="add-modify" title="Add process to generator" class="btn btn-primary navbar-btn disable-no-process" disabled>
-                                <span class="glyphicon glyphicon-plus"></span> Add BRUH
-                            </button>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <button id="clear-modify" title="Clear processes from generator" class="btn btn-primary navbar-btn">
-                                <span class="glyphicon glyphicon-trash"></span> Clear
-                            </button>
-                        </div>
-                    </li>
-                </ul>
-            </div><!--/.nav-collapse -->
-        </nav>
-        <pre id="generated-text" style="text-align: center"> </pre>
-        <div id="generated-processes"></div>
-    </div>
-</div>
 <input type="file" id="files" style="height:0; display:none" />
 <!-- endbuild-->
 </body>

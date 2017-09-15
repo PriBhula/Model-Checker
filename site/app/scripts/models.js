@@ -15,6 +15,7 @@ module.exports = {
             .update();
     },
     init: function(){
+
         graphIds = {};
         graphMap = {};
         const cytoscape = require("cytoscape");
@@ -83,7 +84,6 @@ module.exports = {
             _.each(app.automata.values,graph => addGraph(graph.id,$("#hide-interrupts")[0].checked));
         });
     },
-
 };
 function convertGraph(graph, id, hidden) {
     let glGraph = {};
@@ -165,6 +165,7 @@ function visualizeAutomata(process, graphID, hidden, glGraph) {
         toEmbed.push(_link(from,to, label,tooltip,glGraph, lastBox));
         toEmbed.push(from);
         toEmbed.push(to);
+
     }
 }
 
