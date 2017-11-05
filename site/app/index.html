@@ -109,6 +109,44 @@
         </div>
     </div>
 </div>
+<div id="help-dialog" class="modal fade" title="Add class" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    Help
+                </h4>
+            </div>
+            <form role="form" style="padding-left:20px; padding-right:20px; padding-top:20px">
+                <div class="form-group">
+                    <label>Model Animation</label>
+                    <br/>
+                    The section of the application is designed to extend the visualisation of the automata you've created before.
+                    <br/>
+                    <ol>
+                    	<li>Import the process from the dropdown list - this will load the actions from the automata</li>
+                    	<li>Select the states by checking the boxes beside the actions - this will light up the text and you will be able to see which states are connected</li>
+                    	<li> Selecting ANIMATE will animate the path through the automata</li>
+                    </ol>
+                </div>
+
+                <div class="form-group" style="clear:both">
+                    <button class="btn btn-primary navbar-btn pull-right" data-dismiss="modal" style="margin-right:0">
+                        Close
+                    </button>
+                    <div style="clear:both"></div>
+                </div>
+                <!-- Allow form submission with keyboard without duplicating the dialog button -->
+                <input type="submit" tabindex="-1" style="position:absolute; top:-1000px">
+            </form>
+        </div>
+    </div>
+</div>
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -158,7 +196,7 @@
                 </li>
                 <li>
                     <div>
-                        <button class="btn btn-primary navbar-btn">
+                        <button class="btn btn-primary navbar-btn" data-toggle="modal" data-target="#help-dialog">
                             <span class="glyphicon glyphicon-question-sign"></span>
                         </button>
                     </div>
@@ -253,8 +291,8 @@
                     </li>
                     <li>
                         <div>
-                            <button id="import-modify" title="Import existing process to generator" class="btn btn-primary navbar-btn disable-no-process" disabled>
-                                <span class="glyphicon glyphicon-plus"></span> YAS Process
+                            <button id="animate" title="Animate process" class="btn btn-primary navbar-btn disable-no-process" disabled>
+                                ANIMATE PROCESS
                             </button>
                         </div>
                     </li>

@@ -1,4 +1,5 @@
 const LexerTokens = require("./lexer-tokens");
+const _ = require("lodash");
 module.exports = {
     init:init,
     redraw: redraw,
@@ -24,7 +25,7 @@ function init() {
     generateBt.click(addToEditor);
 }
 function clear() {
-    added.splice(0,added.length);zz
+    added.splice(0,added.length);
     compile(true);
 }
 function compile(shouldRender) {
@@ -138,34 +139,23 @@ function renderVars() {
 function render(process) {
     const form = $(`<form role="form" class="gen-form" style="padding-bottom: 20px"></form>`);
     const gp1 = $(`<div class="form-group"></div>`);
-    const pname = $(`<label>Process: ${process.id}</label><br /><label>Edge prefix</label>`);
     const removeBt = $(`<button class="btn btn-primary navbar-btn pull-right">Remove</button>`);
-    const nameTb = $(`<input type="text" class="form-control" style="padding-left: 20px; float:left" placeholder="No prefix" value="${process.name}"/>`);
-    nameTb.on("input",()=>{
-        process.name = nameTb.val();
-        compile(false);
-    });
+    
+    
     removeBt.click(()=>{
         added.splice(added.indexOf(process),1);
         compile(true);
     });
     form.append(gp1);
-    gp1.append(pname);
-    gp1.append(nameTb);
-    const table = $(`<table border="1"><tr><th style="padding: 0 10px;">Edge Name</th><th style="padding: 0 10px;">New Name</th><th style="padding: 0 10px;">Hide Edge?</th></tr></table>`);
+    const table = $(`<table border="1"><tr><th style="padding: 0 10px;">State</th><th style="padding: 0 10px;"></th></tr></table>`);
 
     for (const a in process.renamed) {
         const alphabet = process.renamed[a];
         const renamed = alphabet.renamed || "";
         const tr = $("<tr></tr>");
-        const nametd = $(`<td style="padding: 0 10px;">${alphabet.id}&nbsp;&#8209;></td>`);
+        const nametd = $(`<td style="padding: 0 10px;">${alphabet.id}</td>`);
         const inputTD = $("<td></td>");
-        const input = $(`<input type="text" class="form-control" placeholder="Dont rename" value="${renamed}"/>`);
-        input.on("input",()=>{
-            alphabet.renamed = input.val();
-            compile();
-        });
-        inputTD.append(input);
+            
         const checkTD = $("<td></td>");
         const check = $(`<input type="checkbox" title="Hide edge" style="margin: 0 10px;"/>`);
         check[0].checked = alphabet.hidden;
@@ -179,7 +169,14 @@ function render(process) {
     }
     form.append(table);
     form.append(removeBt);
+    const stateLabel = $(`<label$<alphabet.id></label>`);
+    form.append(stateLabel);
     rendered.append(form);
+
+
+
+
+    
 }
 function addToEditor() {
     //Dont add anything if there is nothing to add
@@ -219,6 +216,7 @@ function addProcess(isImport) {
             name: "",
             renamed: generateRenameMap(process)
         });
+        getModel();
     }
 
     const variables = process.metaData.variables;
@@ -298,10 +296,17 @@ function importProcess(parse) {
         added.push(orig);
     }
 }
-function redraw() {}
+function redraw() {
+}
 function removeProcess(id) {
     this.splice("added",this.added.indexOf(id),1);
 }
 function find(id) {
     return _.find(app.automata.allValues, {id: id});
+}
+
+function getModel(){
+    $.getScript('scripts/models.js',function(){
+        init();
+    }); 
 }

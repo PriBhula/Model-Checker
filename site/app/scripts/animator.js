@@ -1,4 +1,5 @@
 const LexerTokens = require("./lexer-tokens");
+const _ = require("lodash");
 module.exports = {
     init:init,
     redraw: redraw,
@@ -8,7 +9,7 @@ let compiledResult = "",added=[];
 const selector = $("#process-modify-selector");
 const typeSelector = $("#process-type-selector");
 const addButton = $("#add-modify");
-const importButton = $("#import-modify");
+const animateButton = $("#animate");
 const nameBox = $("#modify-name");
 const generateBt = $("#generate-modify");
 const clearBt = $("#clear-modify");
@@ -19,7 +20,7 @@ function init() {
     typeSelector.change(compile);
     nameBox.on("input",compile);
     addButton.click(()=>addProcess(false));
-    importButton.click(()=>addProcess(true));
+    animateButton.click(()=>addProcess(true));
     clearBt.click(clear);
     generateBt.click(addToEditor);
 }
@@ -207,7 +208,7 @@ function addProcess(isImport) {
     const process = find(id);
     if (isImport) {
         //Import found info
-        importProcess(process);
+        animate(process);
     } else {
         //loop over all subkeys from the selected process, then map them to an array with some default states
         added.push({
@@ -239,61 +240,11 @@ function generateRenameMap(process) {
     });
     return map;
 }
-function importProcess(parse) {
-    nameBox.val(parse.id);
-    //Loop over processes
-    for (let id1 in parse.metaData.processList) {
-        const process = parse.metaData.processList[id1];
-        //Generate a process formatted for modify
-        const orig = {
-            id: process.id.indexOf(":")===-1?process.id:process.id.split(":")[1],
-            name: process.id.indexOf(":")===-1?"":process.id.split(":")[0],
-            renamed: generateRenameMap(process)
-        };
-        const variables = process.metaData.variables;
-        for (let v in variables) {
-            vars[variables[v]] = false;
-        }
-        if (process.metaData.relabels) {
-            for (const i in process.metaData.relabels) {
-                const relabel = process.metaData.relabels[i];
-                let old = relabel.oldLabel;
-                if (old.indexOf(".") !== -1) {
-                    old = old.split(".")[1];
-                }
-                orig.renamed[old].renamed = relabel.newLabel;
-            }
-        }
-        //If the process has a hidden section
-        if (process.metaData.hiding) {
-            const hiddenType = process.metaData.hiding.type;
-            const hiddenSet = process.metaData.hiding.set.set;
-             //For the exclusive list, we want to start by hiding all
-            if (hiddenType === 'excludes') {
-                orig.renamed.forEach(toHide => toHide.hidden = true);
-            }
-            //Loop through all the values in the new process
-            for (const id in orig.renamed) {
-                //Inclusive(hide all in hidden)
-                if (hiddenType === 'includes') {
-                    //If the hidden process has an action with name
-                    if (hiddenSet.indexOf(orig.renamed[id].id) !== -1) {
-                        //Hide the action
-                        orig.renamed[id].hidden = true;
-                    }
-                } else {
-                    //Exclusive (hide all not in hidden)
-                    //If the hidden process has an action with name
-                    if (hiddenSet.indexOf(orig.renamed[id].id) !== -1) {
-                        //show the action
-                        orig.renamed[id].hidden = false;
-                    }
-                }
-            }
-        }
-        //Push the created process
-        added.push(orig);
-    }
+function animate(parse) {
+    $.getScript('scripts/models.js',function(){
+        init();
+        
+    }); 
 }
 function redraw() {
 }
@@ -307,5 +258,5 @@ function find(id) {
 function getModel(){
     $.getScript('scripts/models.js',function(){
         init();
-    });	
+    }); 
 }
