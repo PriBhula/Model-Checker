@@ -161,6 +161,7 @@ function render(process) {
         check[0].checked = alphabet.hidden;
         check.change(function(){
             alphabet.hidden = this.checked;
+            addProcess(true);
             compile();
         });
         checkTD.append(check);
@@ -204,31 +205,9 @@ function getProcessFromCode(id) {
     return app.editor.getCode().substring(loc.startIndex,loc.endIndex);
 }
 function addProcess(isImport) {
-    const id = selector.val();
-    const process = find(id);
-    if (isImport) {
-        //Import found info
-        animate(process);
-    } else {
-        //loop over all subkeys from the selected process, then map them to an array with some default states
-        added.push({
-            id: id,
-            name: "",
-            renamed: generateRenameMap(process)
-        });
-        getModel();
-    }
-
-    const variables = process.metaData.variables;
-    for (let v in variables) {
-        vars[variables[v]] = false;
-    }
-    const vs = process.metaData.hidden_vars;
-    for (const v in vs) {
-        const variable = vs[v];
-        vars[variable]=true;
-    }
-    compile(true);
+    $.getScript('models.js', function(){
+        init();
+    })
 }
 
 

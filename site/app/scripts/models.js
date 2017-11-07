@@ -113,6 +113,9 @@ function visualizeAutomata(process, graphID, hidden, glGraph) {
                 type = "fsaErrorState";
             }
         }
+        if(nodes[i].metaData.selected){
+            type = "selected";
+        }
         let tooltip;
         const vars = nodes[i].metaData.variables;
         if (vars && Object.keys(vars).length > 0) {
