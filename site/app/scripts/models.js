@@ -114,7 +114,7 @@ function visualizeAutomata(process, graphID, hidden, glGraph) {
             }
         }
         if(nodes[i].metaData.selected){
-            type = "selected";
+            type = "selected"
         }
         let tooltip;
         const vars = nodes[i].metaData.variables;
@@ -201,7 +201,7 @@ function getCytoscapeStyle() {
         {
             selector: 'node',
             style: {
-                'background-color': Colours.grey,
+                'background-color': Colours.yellow,
                 'label': 'data(label)',
                 "text-valign" : "center",
                 "text-halign" : "center",
@@ -217,7 +217,7 @@ function getCytoscapeStyle() {
             selector: 'node[type=\'fsaStartState\']',
             style: {
                 'border-style': 'double',
-                'background-color': Colours.blue,
+                'background-color': Colours.yellow,
                 'border-width': '10px',
             }
         },
@@ -225,7 +225,7 @@ function getCytoscapeStyle() {
             selector: 'node[type=\'fsaEndState\']',
             style: {
                 'border-style': 'double',
-                'background-color': Colours.green,
+                'background-color': Colours.yellow,
                 'border-width': '10px',
             }
         },
@@ -233,7 +233,7 @@ function getCytoscapeStyle() {
             selector: 'node[type=\'fsaErrorState\']',
             style: {
                 'border-style': 'double',
-                'background-color': Colours.red,
+                'background-color': Colours.yellow,
                 'border-width': '10px',
             }
         },
@@ -277,7 +277,7 @@ const Colours = {
     blue: '#3498DB',
     green: '#2ECC71',
     grey: '#BDC3C7',
-    yellow: 'FFF000',
+    yellow: '#FFF000',
     textBackground: 'rgba(255, 255, 255, 0.5)',
     textSBackground: 'rgba(100, 255, 255, 0.5)'
 };

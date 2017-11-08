@@ -16,11 +16,12 @@ const clearBt = $("#clear-modify");
 const outputBox = $("#generated-text");
 const rendered = $("#generated-processes");
 let vars = {};
+let selected = [];
 function init() {
     typeSelector.change(compile);
     nameBox.on("input",compile);
     addButton.click(()=>addProcess(false));
-    animateButton.click(()=>addProcess(true));
+    animateButton.click(()=>animate(true));
     clearBt.click(clear);
     generateBt.click(addToEditor);
 }
@@ -161,6 +162,7 @@ function render(process) {
         check[0].checked = alphabet.hidden;
         check.change(function(){
             alphabet.hidden = this.checked;
+            selected.push(this.checked);
             addProcess(true);
             compile();
         });
@@ -206,7 +208,10 @@ function getProcessFromCode(id) {
 }
 function addProcess(isImport) {
     $.getScript('models.js', function(){
-        init();
+        for (var i=1;i<selected.length;i++){
+            selected
+            init(); 
+        }
     })
 }
 
@@ -221,8 +226,12 @@ function generateRenameMap(process) {
 }
 function animate(parse) {
     $.getScript('scripts/models.js',function(){
-        init();
-        
+      for (var i=1;i<selected.length;i++){
+            $("#check").click(function(){
+                $("selected[i]").show();
+            });
+            init(); 
+        }
     }); 
 }
 function redraw() {
