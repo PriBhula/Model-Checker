@@ -277,7 +277,11 @@ const Colours = {
     blue: '#3498DB',
     green: '#2ECC71',
     grey: '#BDC3C7',
+<<<<<<< HEAD
     yellow: '#FFF000',
+=======
+    yellow: 'FFF0000',
+>>>>>>> origin/master
     textBackground: 'rgba(255, 255, 255, 0.5)',
     textSBackground: 'rgba(100, 255, 255, 0.5)'
 };
